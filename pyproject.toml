@@ -19,7 +19,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-nameday = "nameday.nameday:main" 
+nameday = "lv_namedays.nameday:main" 
 
 [tool.setuptools.package-data]
-your_package = ["data/*.json"]
+nameday = ["data/*.json"]

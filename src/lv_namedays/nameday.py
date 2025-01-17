@@ -17,7 +17,7 @@ def read_namedays():
     current_directory = os.getcwd()
     print("Current Working Directory:", current_directory)
 
-    with importlib.resources.open_text('nameday.data', NAMEDAY_LIST) as f:
+    with importlib.resources.open_text('lv_namedays.data', NAMEDAY_LIST) as f:
     #with open(NAMEDAY_LIST, "r", encoding="utf-8") as f:
         namedays = json.load(f)
 
