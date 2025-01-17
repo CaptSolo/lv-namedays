@@ -1,7 +1,7 @@
 [project]
 name = "lv-namedays"
 version = "0.1.0"
-description = "Add your description here"
+description = "Latvian nameday list"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["pandas", "openpyxl"]
