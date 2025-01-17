@@ -1,2 +1,2 @@
-include lv_namedays/data/*.json
+include src/lv_namedays/data/*.json
 
