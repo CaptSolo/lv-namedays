@@ -8,15 +8,17 @@ import datetime as dt
 import json
 import argparse
 import os
+import importlib.resources
 
-NAMEDAY_LIST = "data/tradic_vardadienu_saraksts.json"
+NAMEDAY_LIST = "tradic_vardadienu_saraksts.json"
 
 def read_namedays():
 
     current_directory = os.getcwd()
     print("Current Working Directory:", current_directory)
 
-    with open(NAMEDAY_LIST, "r", encoding="utf-8") as f:
+    with importlib.resources.open_text('nameday.data', NAMEDAY_LIST) as f:
+    #with open(NAMEDAY_LIST, "r", encoding="utf-8") as f:
         namedays = json.load(f)
 
     return namedays
