@@ -22,4 +22,4 @@ build-backend = "setuptools.build_meta"
 nameday = "lv_namedays.nameday:main" 
 
 [tool.setuptools.package-data]
-nameday = ["data/*.json"]
+nameday = ["lv_namedays/data/*.json"]
