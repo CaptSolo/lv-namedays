@@ -17,6 +17,8 @@ def read_namedays():
     current_directory = os.getcwd()
     print("Current Working Directory:", current_directory)
 
+
+
     with importlib.resources.open_text('lv_namedays.data', NAMEDAY_LIST) as f:
     #with open(NAMEDAY_LIST, "r", encoding="utf-8") as f:
         namedays = json.load(f)
@@ -24,8 +26,10 @@ def read_namedays():
     return namedays
 
 def print_namedays(date_str):
-
+    
     namedays = read_namedays()
+
+    print()
 
     if date_str in namedays:
         nameday = namedays[date_str]
@@ -48,6 +52,8 @@ def get_date_for_name(name):
 def print_nameday_for_name(name):
     
     date = get_date_for_name(name)
+
+    print()
 
     if date:
         print(f"{name}: vārda diena ir {date} (MM-DD)")
