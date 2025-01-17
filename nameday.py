@@ -50,6 +50,12 @@ def print_nameday_for_name(name):
 
 def main():
 
+    # TODO:
+    #  - Print today's names if no arguments are given
+    #  - Print the name day for a specific name if the program has 1 (or more?) argument(s)
+    #  - Print help if the program has the --help argument
+    #  - Create library functions for nameday lookup
+
     parser = argparse.ArgumentParser(description="Latvian name day lookup")
     parser.add_argument("--today", action="store_true", help="Show today's name days")
     parser.add_argument("--name", type=str, help="Look up a name day for a specific name")
