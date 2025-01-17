@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 A program that tells you the Latvian nameday for today.
 """

@@ -19,4 +19,4 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-nameday = "nameday:main" 
+nameday = "nameday.nameday:main" 
