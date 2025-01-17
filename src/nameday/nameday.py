@@ -7,10 +7,14 @@ A program that tells you the Latvian nameday for today.
 import datetime as dt
 import json
 import argparse
+import os
 
 NAMEDAY_LIST = "data/tradic_vardadienu_saraksts.json"
 
 def read_namedays():
+
+    current_directory = os.getcwd()
+    print("Current Working Directory:", current_directory)
 
     with open(NAMEDAY_LIST, "r", encoding="utf-8") as f:
         namedays = json.load(f)
