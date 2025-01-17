@@ -1,5 +1,7 @@
 # Latvian name day list
 
+*This is work in progress. Some things might not work.*
+
 This repository contains the Latvian name day list and an utility for working with it.
 
 About [Latvian name days](https://en.wikipedia.org/wiki/Name_day#Latvia)
