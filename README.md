@@ -1,4 +1,4 @@
-# Latvian name day list
+# Latvian name day list (vārda dienu saraksts)
 
 This repository contains the Latvian name day list and an utility for working with it.
 
