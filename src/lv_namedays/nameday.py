@@ -40,19 +40,33 @@ def now():
     """
     print_namedays(dt.datetime.now().strftime("%m-%d"))
 
-def print_namedays(date_str):
+def print_namedays(date_str, msg=None):
     
     namedays = read_namedays()
 
     click.echo()
 
+    if not msg:
+        msg = "Šodienas vārda dienas:"
+
     if date_str in namedays:
         nameday = namedays[date_str]
-        click.echo(f"Šodienas vārda dienas: {", ".join(nameday)}")
+        click.echo(f"{msg} {", ".join(nameday)}")
     else:
         click.echo("Šodien nav neviena vārda diena.")
 
     click.echo()
+
+@cli.command()
+@click.argument("date")
+def date(date: str) -> None:
+    """
+    Show name days for a specific date (in MM-DD format).
+    """
+    if len(date) != 5 or date[2] != "-":
+        click.echo("Incorrect date format. Enter date in MM-DD format.")
+
+    print_namedays(date, msg=f"{date} vārda dienas:")
 
 def get_date_for_name(name):
 

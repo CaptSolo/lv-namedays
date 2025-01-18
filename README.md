@@ -42,6 +42,7 @@ Options:
   --help  Show this message and exit.
 
 Commands:
+  date  Show name days for a specific date (in MM-DD format).
   name  Show the name day for a specific name.
   now   Show today's name days.
   week  Show name days for the current day and 3 days before and after it.
