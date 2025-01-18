@@ -22,6 +22,7 @@ Options:
 Commands:
   name  Show the name day for a specific name.
   now   Show today's name days.
+  week  Show name days for the current day and 3 days before and after it.
 ```
 
 ### Data source

@@ -60,9 +60,12 @@ def get_date_for_name(name):
 
     namedays = read_namedays()
 
+    # Make search case insensitive
+    namedays = {date: [n.lower() for n in names] for date, names in namedays.items()}
+
     # Search for the name in the calendar
     for date, names in namedays.items():
-        if name in names:
+        if name.lower() in names:
             return date
     return None
 
@@ -88,19 +91,48 @@ def print_nameday_for_name(name):
 
     click.echo()
 
+
+def print_namedays_for_week():
+    today = dt.datetime.now()
+    start_date = today - dt.timedelta(days=3)
+    end_date = today + dt.timedelta(days=3)
+
+    namedays = read_namedays()
+
+    click.echo()
+
+    for i in range(7):
+        current_date = start_date + dt.timedelta(days=i)
+        date_str = current_date.strftime("%m-%d")
+
+        if date_str in namedays:
+            nameday = namedays[date_str]
+
+            bold = False
+
+            if current_date == today:
+                bold = True
+
+            click.secho(f"{date_str} vārda dienas: {", ".join(nameday)}", bold=bold)
+        else:
+            click.echo(f"{date_str} nav neviena vārda diena")
+
+    click.echo()
+
+@cli.command()
+def week():
+    """
+    Show name days for the current day and 3 days before and after it.
+    """
+    print_namedays_for_week()
+
 def main():
 
     cli()
 
     # TODO:
-    #  - Print today's names if no arguments are given
-    #  - Print the name day for a specific name if the program has 1 (or more?) argument(s)
-    #  - Print help if the program has the --help argument
     #  - Create library functions for nameday lookup
-
-    #parser = argparse.ArgumentParser(description="Latvian name day lookup")
-    #parser.add_argument("--today", action="store_true", help="Show today's name days")
-    #parser.add_argument("--name", type=str, help="Look up a name day for a specific name")
+    #  - Make lookup case insensitive
 
 if __name__ == "__main__":
     main()
