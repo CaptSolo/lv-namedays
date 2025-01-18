@@ -6,8 +6,27 @@ This repository contains the Latvian name day list and an utility for working wi
 
 About [Latvian name days](https://en.wikipedia.org/wiki/Name_day#Latvia)
 
-Data source:
- - https://data.gov.lv/dati/eng/dataset/latviesu-tradicionalais-un-paplasinatais-kalendarvardu-saraksts
+### Usage
+
+```
+Usage: nameday [OPTIONS] COMMAND [ARGS]...
+
+  A program for lookup in the Latvian name day calendar.
+
+  It can display today's name days and look up the name day date for a
+  specific name.
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  name  Show the name day for a specific name.
+  now   Show today's name days.
+```
+
+### Data source
+
+https://data.gov.lv/dati/eng/dataset/latviesu-tradicionalais-un-paplasinatais-kalendarvardu-saraksts
 
 ### Related projects
 

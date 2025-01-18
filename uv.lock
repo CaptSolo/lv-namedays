@@ -37,6 +37,10 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
+]
+
+[package.optional-dependencies]
+convert = [
     { name = "openpyxl" },
     { name = "pandas" },
 ]
@@ -44,8 +48,8 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "click" },
-    { name = "openpyxl" },
-    { name = "pandas" },
+    { name = "openpyxl", marker = "extra == 'convert'" },
+    { name = "pandas", marker = "extra == 'convert'" },
 ]
 
 [[package]]
