@@ -6,22 +6,26 @@ About [Latvian name days](https://en.wikipedia.org/wiki/Name_day#Latvia).
 
 ### Installation
 
-To install this tool from Github run:
+To install this tool run:
 
 ```
-pip install -U "git+https://github.com/CaptSolo/lv-namedays"
+pip install lv-namedays
 ```
 
 Using `uv`:
 
 ```
-uv pip install -U "git+https://github.com/CaptSolo/lv-namedays"
+uv pip install lv-namedays
 ```
 
-You can also run it directly without installing by using `uvx`:
+You can also install it as a `uv` tool and then run it directly from shell:
 
 ```
-uvx --from "git+https://github.com/CaptSolo/lv-namedays" nameday
+> uv tool install lv-namedays
+
+> nameday now
+
+Šodienas vārda dienas: Antons, Antis, Antonijs
 ```
 
 ### Usage
