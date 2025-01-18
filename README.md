@@ -1,10 +1,28 @@
 # Latvian name day list
 
-*This is work in progress. Some things might not work.*
-
 This repository contains the Latvian name day list and an utility for working with it.
 
 About [Latvian name days](https://en.wikipedia.org/wiki/Name_day#Latvia)
+
+### Installation
+
+To install this tool from Github run:
+
+```
+pip install -U "git+https://github.com/CaptSolo/lv-namedays"
+```
+
+Using `uv`:
+
+```
+uv pip install -U "git+https://github.com/CaptSolo/lv-namedays"
+```
+
+You can also run it directly without installing by using `uvx`:
+
+```
+uvx --from "git+https://github.com/CaptSolo/lv-namedays" nameday
+```
 
 ### Usage
 

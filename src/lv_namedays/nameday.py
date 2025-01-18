@@ -9,8 +9,6 @@ for a specific name.
 
 import datetime as dt
 import json
-import argparse
-import os
 import importlib.resources
 import click
 
@@ -132,7 +130,6 @@ def main():
 
     # TODO:
     #  - Create library functions for nameday lookup
-    #  - Make lookup case insensitive
 
 if __name__ == "__main__":
     main()
