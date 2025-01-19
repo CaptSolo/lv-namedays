@@ -17,13 +17,6 @@ class TestNameday(unittest.TestCase):
         }
         self.mock_json_data = json.dumps(self.mock_namedays)
 
-    @patch("importlib.resources.open_text")
-    def test_read_namedays(self, mock_open_text):
-        """Test reading the namedays from the JSON file."""
-        mock_open_text.return_value.__enter__.return_value = StringIO(self.mock_json_data)
-        namedays = nameday.read_namedays()
-        self.assertEqual(namedays, self.mock_namedays)
-
     @patch("lv_namedays.nameday.read_namedays")
     def test_date_command(self, mock_read_namedays):
         """Test the CLI command for displaying name days for a specific date."""

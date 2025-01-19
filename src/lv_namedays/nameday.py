@@ -10,6 +10,7 @@ for a specific name.
 import datetime as dt
 import json
 import importlib.resources
+from importlib.resources import files
 import click
 
 
@@ -25,13 +26,17 @@ def cli():
     """
     pass
 
-def read_namedays():
 
-    with importlib.resources.open_text('lv_namedays.data', NAMEDAY_LIST) as f:
-    #with open(NAMEDAY_LIST, "r", encoding="utf-8") as f:
+def read_namedays():
+    """Read the name day data from the JSON file."""
+
+    data_path = files('lv_namedays.data').joinpath(NAMEDAY_LIST)
+    
+    with data_path.open('r', encoding='utf-8') as f:
         namedays = json.load(f)
 
     return namedays
+
 
 @cli.command()
 def now():
