@@ -14,7 +14,7 @@ classifiers = [
 dependencies = ["click"]
 
 [project.optional-dependencies]
-convert = ["pandas", "openpyxl"]
+convert = ["pandas", "openpyxl", "pytest"]
 
 [project.urls]
 homepage = "https://github.com/CaptSolo/lv-namedays"
