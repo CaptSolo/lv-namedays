@@ -70,6 +70,14 @@ def date(date: str) -> None:
     """
     if len(date) != 5 or date[2] != "-":
         click.echo("Incorrect date format. Enter date in MM-DD format.")
+        return
+
+    month, day = date.split("-")
+    try:
+        dt.datetime(2000, int(month), int(day))
+    except ValueError:
+        click.echo("Incorrect date format. Enter a correct date in MM-DD format.")
+        return
 
     print_namedays(date, msg=f"{date} vārda dienas:")
 
@@ -109,10 +117,9 @@ def print_nameday_for_name(name):
     click.echo()
 
 
-def print_namedays_for_week():
-    today = dt.datetime.now()
-    start_date = today - dt.timedelta(days=3)
-    end_date = today + dt.timedelta(days=3)
+def print_namedays_for_week(date):
+
+    start_date = date - dt.timedelta(days=3)
 
     namedays = read_namedays()
 
@@ -127,7 +134,7 @@ def print_namedays_for_week():
 
             bold = False
 
-            if current_date == today:
+            if current_date == date:
                 bold = True
 
             click.secho(f"{date_str} vārda dienas: {", ".join(nameday)}", bold=bold)
@@ -141,7 +148,9 @@ def week():
     """
     Show name days for the current day and 3 days before and after it.
     """
-    print_namedays_for_week()
+
+    date = dt.datetime.now().date()
+    print_namedays_for_week(date)
 
 def main():
 
