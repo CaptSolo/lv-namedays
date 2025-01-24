@@ -1,0 +1,11 @@
+{
+    // Python settings
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.extraPaths": ["./src"],
+    "terminal.integrated.cwd": "${workspaceFolder}",
+
+    // Test settings
+    "python.testing.pytestArgs": ["tests"],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
