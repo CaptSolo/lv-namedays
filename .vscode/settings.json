@@ -1,7 +1,7 @@
 {
     // Python settings
     "python.analysis.autoSearchPaths": true,
-    "python.analysis.extraPaths": ["./src"],
+    "python.analysis.extraPaths": ["src"],
     "terminal.integrated.cwd": "${workspaceFolder}",
 
     // Test settings
