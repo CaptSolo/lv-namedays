@@ -56,7 +56,8 @@ def print_namedays(date_str, msg=None):
 
     if date_str in namedays:
         nameday = namedays[date_str]
-        click.echo(f"{msg} {", ".join(nameday)}")
+        nameday_lst = ", ".join(nameday) 
+        click.echo(f"{msg} {nameday_lst}")
     else:
         click.echo("Šodien nav neviena vārda diena.")
 
@@ -137,7 +138,8 @@ def print_namedays_for_week(date):
             if current_date == date:
                 bold = True
 
-            click.secho(f"{date_str} vārda dienas: {", ".join(nameday)}", bold=bold)
+            nameday_lst = ", ".join(nameday)
+            click.secho(f"{date_str} vārda dienas: {nameday_lst}", bold=bold)
         else:
             click.echo(f"{date_str} nav neviena vārda diena")
 
