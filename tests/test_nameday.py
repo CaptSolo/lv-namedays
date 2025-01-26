@@ -2,9 +2,11 @@ import unittest
 from unittest.mock import patch
 from io import StringIO
 from click.testing import CliRunner
-from lv_namedays import nameday
 import datetime as dt
 import json
+
+from lv_namedays import nameday
+from lv_namedays import cli
 
 class TestNameday(unittest.TestCase):
 
@@ -23,7 +25,7 @@ class TestNameday(unittest.TestCase):
         }
         self.mock_json_data = json.dumps(self.mock_namedays)
 
-    @patch("lv_namedays.nameday.read_namedays")
+    @patch("lv_namedays.cli.read_namedays")
     def test_date_command(self, mock_read_namedays):
         """Test the CLI command for displaying name days for a specific date."""
         mock_read_namedays.return_value = self.mock_namedays
@@ -31,17 +33,17 @@ class TestNameday(unittest.TestCase):
         runner = CliRunner()
 
         # Test with a valid date
-        result = runner.invoke(nameday.cli, ["date", "01-01"])
+        result = runner.invoke(cli.cli, ["date", "01-01"])
         self.assertEqual(result.exit_code, 0)
         self.assertIn("01-01 vārda dienas:", result.output)
         self.assertIn("Laimnesis, Solvita, Solvija", result.output)
 
         # Test with a date that has no names
-        result = runner.invoke(nameday.cli, ["date", "02-29"])
+        result = runner.invoke(cli.cli, ["date", "02-29"])
         self.assertEqual(result.exit_code, 0)
         self.assertIn("Šodien nav neviena vārda diena", result.output)
 
-    @patch("lv_namedays.nameday.read_namedays")
+    @patch("lv_namedays.cli.read_namedays")
     def test_date_invalid(self, mock_read_namedays):
         """
         Test the CLI command with an invalid date format.
@@ -50,14 +52,14 @@ class TestNameday(unittest.TestCase):
 
         runner = CliRunner()
 
-        result = runner.invoke(nameday.cli, ["date", "13-32"])
+        result = runner.invoke(cli.cli, ["date", "13-32"])
         self.assertIn("Incorrect date format", result.output)
 
-        result = runner.invoke(nameday.cli, ["date", "1332"])
+        result = runner.invoke(cli.cli, ["date", "1332"])
         self.assertIn("Incorrect date format", result.output)
 
-    @patch("lv_namedays.nameday.read_namedays")
-    @patch("lv_namedays.nameday.dt.datetime")
+    @patch("lv_namedays.cli.read_namedays")
+    @patch("lv_namedays.cli.dt.datetime")
     def test_now_command(self, mock_datetime, mock_read_namedays):
         """Test the CLI command for displaying today's name days."""
         mock_datetime.now.return_value = dt.datetime(2023, 1, 1)
@@ -65,13 +67,13 @@ class TestNameday(unittest.TestCase):
         mock_read_namedays.return_value = self.mock_namedays
 
         runner = CliRunner()
-        result = runner.invoke(nameday.cli, ["now"])
+        result = runner.invoke(cli.cli, ["now"])
 
         self.assertEqual(result.exit_code, 0)
         self.assertIn("Šodienas vārda dienas:", result.output)
         self.assertIn("Laimnesis, Solvita, Solvija", result.output)
 
-    @patch("lv_namedays.nameday.read_namedays")
+    @patch("lv_namedays.cli.read_namedays")
     def test_name_command(self, mock_read_namedays):
         """Test the CLI command for finding a name's date."""
         mock_read_namedays.return_value = self.mock_namedays
@@ -79,24 +81,24 @@ class TestNameday(unittest.TestCase):
         runner = CliRunner()
 
         # Test with a name that exists
-        result = runner.invoke(nameday.cli, ["name", "Uldis"])
+        result = runner.invoke(cli.cli, ["name", "Uldis"])
         self.assertEqual(result.exit_code, 0)
         self.assertIn("Uldis", result.output)
         self.assertIn("07-04", result.output)
 
         # Test case insensitive search
-        result = runner.invoke(nameday.cli, ["name", "uldis"])
+        result = runner.invoke(cli.cli, ["name", "uldis"])
         self.assertEqual(result.exit_code, 0)
         self.assertIn("uldis", result.output)
         self.assertIn("07-04", result.output)
 
         # Test with a name that does not exist
-        result = runner.invoke(nameday.cli, ["name", "John"])
+        result = runner.invoke(cli.cli, ["name", "John"])
         self.assertEqual(result.exit_code, 0)
         self.assertIn("Nevarēju atrast vārda dienu:", result.output)
         self.assertIn("John", result.output)
 
-    @patch("lv_namedays.nameday.read_namedays")
+    @patch("lv_namedays.cli.read_namedays")
     @patch("click.secho")
     @patch("click.echo")
     def test_print_namedays_for_week(self, mock_echo, mock_secho, mock_read_namedays):
@@ -105,7 +107,7 @@ class TestNameday(unittest.TestCase):
 
         # Call the function with a fixed date
         test_date = dt.datetime(2023, 1, 4).date()
-        nameday.print_namedays_for_week(test_date)
+        cli.print_namedays_for_week(test_date)
 
         # Expected outputs for the week
         expected_outputs = [
@@ -145,7 +147,3 @@ class TestNamedayData(unittest.TestCase):
 
         # Ensure no unexpected keys (validate structure)
         self.assertTrue(all(isinstance(date, str) and isinstance(names, list) for date, names in namedays.items()))
-
-
-if __name__ == "__main__":
-    unittest.main()
