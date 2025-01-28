@@ -35,6 +35,9 @@ def convert_basic_list():
             day, month = date_str.split(".")[:2]
             date = f"{month}-{day}"
 
+            # Convert em-dash to hyphen
+            names_str = names_str.replace("–", "-")
+
             names_str = names_str.replace(".", ",")
             names = names_str.split(",")
             names = [text.strip() for text in names]

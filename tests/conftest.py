@@ -11,6 +11,7 @@ def mock_namedays():
         "01-06": ["Spulga", "Arnita"],
         "01-07": ["Rota", "Zigmārs", "Juliāns", "Digmārs"],
         "02-14": ["Valentīns"],
+        "02-29": ["-"],
         "07-04": ["Ulvis", "Uldis", "Sandis", "Sandijs"],
         "12-24": ["Ādams", "Ieva"]
     }

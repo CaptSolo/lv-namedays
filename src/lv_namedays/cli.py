@@ -1,7 +1,7 @@
 import datetime as dt
 import click
 
-from .nameday import NameDayDB, read_namedays
+from .nameday import NameDayDB
 
 @click.group()
 def cli():
