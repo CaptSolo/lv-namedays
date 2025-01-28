@@ -1,7 +1,7 @@
 import datetime as dt
 import click
 
-from .nameday import read_namedays, get_date_for_name
+from .nameday import NameDayDB, read_namedays
 
 @click.group()
 def cli():
@@ -22,19 +22,20 @@ def now():
 
 def print_namedays(date_str, msg=None):
     
-    namedays = read_namedays()
+    db = NameDayDB()
 
     click.echo()
 
     if not msg:
         msg = "Šodienas vārda dienas:"
 
-    if date_str in namedays:
-        nameday = namedays[date_str]
-        nameday_lst = ", ".join(nameday) 
+    names = db.get_names_for_date(date_str)
+    
+    if names is not None:
+        nameday_lst = ", ".join(names) 
         click.echo(f"{msg} {nameday_lst}")
     else:
-        click.echo("Šodien nav neviena vārda diena.")
+        click.echo("Nav informācija par vārda dienām šajā datumā.")
 
     click.echo()
 
@@ -45,14 +46,15 @@ def date(date: str) -> None:
     Show name days for a specific date (in MM-DD format).
     """
     if len(date) != 5 or date[2] != "-":
-        click.echo("Incorrect date format. Enter date in MM-DD format.")
+        click.echo("Nepareizs datums. Ievadiet datumu MM-DD formātā.")
         return
 
     month, day = date.split("-")
+
     try:
         dt.datetime(2000, int(month), int(day))
     except ValueError:
-        click.echo("Incorrect date format. Enter a correct date in MM-DD format.")
+        click.echo("Nepareizs datums. Ievadiet datumu MM-DD formātā.")
         return
 
     print_namedays(date, msg=f"{date} vārda dienas:")
@@ -66,8 +68,9 @@ def name(name):
     print_nameday_for_name(name)
 
 def print_nameday_for_name(name):
-    
-    date = get_date_for_name(name)
+
+    db = NameDayDB()
+    date = db.get_date_for_name(name) 
 
     click.echo()
 
@@ -83,7 +86,7 @@ def print_namedays_for_week(date):
 
     start_date = date - dt.timedelta(days=3)
 
-    namedays = read_namedays()
+    db = NameDayDB()
 
     click.echo()
 
@@ -91,18 +94,17 @@ def print_namedays_for_week(date):
         current_date = start_date + dt.timedelta(days=i)
         date_str = current_date.strftime("%m-%d")
 
-        if date_str in namedays:
-            nameday = namedays[date_str]
+        names = db.get_names_for_date(date_str)
+
+        if names is not None:
 
             bold = False
 
             if current_date == date:
                 bold = True
 
-            nameday_lst = ", ".join(nameday)
+            nameday_lst = ", ".join(names)
             click.secho(f"{date_str} vārda dienas: {nameday_lst}", bold=bold)
-        else:
-            click.echo(f"{date_str} nav neviena vārda diena")
 
     click.echo()
 

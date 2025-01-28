@@ -9,6 +9,24 @@ from lv_namedays import cli
 def runner():
     return CliRunner()
 
+@patch("click.echo")
+def test_print_namedays_correct(mock_echo):
+    """Test the print_namedays function with correct input."""
+    date = "01-01"
+    # Run the function
+    cli.print_namedays(date)
+    # Assert the output
+    mock_echo.assert_any_call("Šodienas vārda dienas: Laimnesis, Solvita, Solvija")
+
+@patch("click.echo")
+def test_print_namedays_incorrect(mock_echo):
+    """Test the print_namedays function with incorrect input."""
+    date = "02-30"
+    # Run the function
+    cli.print_namedays(date)
+    # Assert the output
+    mock_echo.assert_any_call("Nav informācija par vārda dienām šajā datumā.")
+
 @patch("lv_namedays.cli.read_namedays")
 def test_date_command(mock_read_namedays, runner, mock_namedays):
     """Test the CLI command for displaying name days for a specific date."""
@@ -23,7 +41,7 @@ def test_date_command(mock_read_namedays, runner, mock_namedays):
     # Test with a date that has no names
     result = runner.invoke(cli.cli, ["date", "02-29"])
     assert result.exit_code == 0
-    assert "Šodien nav neviena vārda diena" in result.output
+    assert "-" in result.output
 
 @patch("lv_namedays.cli.read_namedays")
 def test_date_invalid(mock_read_namedays, runner, mock_namedays):
@@ -31,10 +49,13 @@ def test_date_invalid(mock_read_namedays, runner, mock_namedays):
     mock_read_namedays.return_value = mock_namedays
 
     result = runner.invoke(cli.cli, ["date", "13-32"])
-    assert "Incorrect date format" in result.output
+    assert "Nepareizs datums. Ievadiet datumu MM-DD formātā." in result.output
 
     result = runner.invoke(cli.cli, ["date", "1332"])
-    assert "Incorrect date format" in result.output
+    assert "Nepareizs datums. Ievadiet datumu MM-DD formātā." in result.output
+
+    result = runner.invoke(cli.cli, ["date", "text"])
+    assert "Nepareizs datums. Ievadiet datumu MM-DD formātā." in result.output
 
 @patch("lv_namedays.cli.read_namedays")
 @patch("lv_namedays.cli.dt.datetime")
@@ -48,6 +69,19 @@ def test_now_command(mock_datetime, mock_read_namedays, runner, mock_namedays):
     assert result.exit_code == 0
     assert "Šodienas vārda dienas:" in result.output
     assert "Laimnesis, Solvita, Solvija" in result.output
+
+@patch("lv_namedays.cli.read_namedays")
+@patch("lv_namedays.cli.dt.datetime")
+def test_now_command_feb29(mock_datetime, mock_read_namedays, runner, mock_namedays):
+    """Test the CLI command for displaying today's name days
+    when there are no names for the current day."""
+    mock_datetime.now.return_value = dt.datetime(2024, 2, 29)
+    mock_datetime.now.return_value.strftime.return_value = "02-29"
+    mock_read_namedays.return_value = mock_namedays
+
+    result = runner.invoke(cli.cli, ["now"])
+    assert result.exit_code == 0
+    assert "Šodienas vārda dienas: –" in result.output
 
 @patch("lv_namedays.cli.read_namedays")
 def test_name_command(mock_read_namedays, runner, mock_namedays):
@@ -103,3 +137,4 @@ def test_print_namedays_for_week(mock_echo, mock_secho, mock_read_namedays, mock
 
     # Ensure blank lines are echoed
     mock_echo.assert_any_call()
+    

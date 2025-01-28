@@ -38,18 +38,7 @@ class NameDayDB:
         for date, names in namedays.items():
             if name.lower() in names:
                 return date
+
+        # Name was not found
         return None
 
-
-def get_date_for_name(name):
-
-    namedays = read_namedays()
-
-    # Make search case insensitive
-    namedays = {date: [n.lower() for n in names] for date, names in namedays.items()}
-
-    # Search for the name in the calendar
-    for date, names in namedays.items():
-        if name.lower() in names:
-            return date
-    return None

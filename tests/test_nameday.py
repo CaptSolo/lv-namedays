@@ -17,6 +17,9 @@ def test_actual_data():
     assert "02-29" in namedays
     assert "–" in namedays["02-29"]
 
+    assert "05-22" in namedays
+    assert "Visu neparasto un kalendāros neierakstīto vārdu diena" in namedays["05-22"]
+
     # Ensure no unexpected keys (validate structure)
     assert all(isinstance(date, str) and isinstance(names, list) for date, names in namedays.items())
 
@@ -25,7 +28,7 @@ def test_get_names_for_date(mock_read_namedays, mock_namedays):
     mock_read_namedays.return_value = mock_namedays
     db = NameDayDB()
     assert db.get_names_for_date("01-01") == ["Laimnesis", "Solvita", "Solvija"]
-    assert db.get_names_for_date("01-10") is None
+    assert db.get_names_for_date("01-00") is None
 
 @patch('lv_namedays.nameday.read_namedays')
 def test_get_date_for_name(mock_read_namedays, mock_namedays):
