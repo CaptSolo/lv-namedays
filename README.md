@@ -28,7 +28,7 @@ You can also install it as a `uv` tool and then run it directly from shell:
 Šodienas vārda dienas: Antons, Antis, Antonijs
 ```
 
-### Usage
+### Usage - command line
 
 ```
 Usage: nameday [OPTIONS] COMMAND [ARGS]...
@@ -46,6 +46,28 @@ Commands:
   name  Show the name day for a specific name.
   now   Show today's name days.
   week  Show name days for the current day and 3 days before and after it.
+```
+
+### Usage - as a library
+
+The name day lookup functionality can also be imported and used as a library:
+
+```python
+from lv_namedays import NameDayDB
+
+db = NameDayDB()
+
+# Look up the name day for Uldis (4th of July)
+db.get_date_for_name("Uldis")
+>>> '07-04'
+
+# Look up the names for the 1st of July
+db.get_names_for_date("07-01")
+>>> ['Imants', 'Rimants', 'Ingars', 'Intars']
+
+# Get the full name days list (dictionary)
+db.namedays
+>>> {'01-01': ['Laimnesis', 'Solvita', 'Solvija'], ..., '12-31': ['Silvestrs', 'Silvis', 'Kalvis']}
 ```
 
 ### Data source
