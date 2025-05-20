@@ -61,6 +61,10 @@ db = NameDayDB()
 db.get_date_for_name("Uldis")
 >>> '07-04'
 
+# Look up the name day in the extended name day list
+db.get_data_for_name("Radomirs", extended=True)
+>>> '07-23'
+
 # Look up the names for the 1st of July
 db.get_names_for_date("07-01")
 >>> ['Imants', 'Rimants', 'Ingars', 'Intars']

@@ -23,6 +23,26 @@ def test_actual_data():
     # Ensure no unexpected keys (validate structure)
     assert all(isinstance(date, str) and isinstance(names, list) for date, names in namedays.items())
 
+def test_actual_data_extended():
+    """Test the actual data from the extended namedays list."""
+    namedays = nameday.read_namedays_ext()
+
+    assert "01-01" in namedays
+    assert "Afrodīte" in namedays["01-01"]
+
+    assert "07-23" in namedays
+    assert "Radomirs" in namedays["07-23"]
+
+    # Ensure no unexpected keys (validate structure)
+    assert all(isinstance(date, str) and isinstance(names, list) for date, names in namedays.items())
+
+
+def test_get_nameday_extended():
+    db = NameDayDB()
+    assert db.get_date_for_name("Radomirs") is None
+    assert db.get_date_for_name("Radomirs", extended=True) == "07-23"
+
+
 @patch('lv_namedays.nameday.read_namedays')
 def test_get_names_for_date(mock_read_namedays, mock_namedays):
     mock_read_namedays.return_value = mock_namedays
