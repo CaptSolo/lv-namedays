@@ -1,6 +1,6 @@
 [project]
 name = "lv-namedays"
-version = "0.5.3"
+version = "0.5.4"
 description = "a CLI tool and a library for Latvian name day lookup"
 readme = "README.md"
 authors = [{name = "CaptSolo"}]

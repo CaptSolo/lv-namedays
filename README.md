@@ -28,7 +28,7 @@ You can also install it as a `uv` tool and then run it directly from shell:
 Šodienas vārda dienas: Antons, Antis, Antonijs
 ```
 
-### Usage - command line
+### Usage - summary
 
 ```
 Usage: nameday [OPTIONS] COMMAND [ARGS]...
@@ -46,6 +46,66 @@ Commands:
   name  Show the name day for a specific name.
   now   Show today's name days.
   week  Show name days for the current day and 3 days before and after it.
+```
+
+### Usage - as a command-line tool
+
+#### Get the names for a given date
+
+```
+❯ nameday date 07-23
+
+07-23 vārda dienas: Magda, Magone, Mērija, Magdalēna
+```
+
+You can also look up names in the extended name day list by supplying the `-e` or `--extended` option:
+
+```
+❯ nameday date 07-23 --extended
+
+07-23 vārda dienas: Magda, Magone, Mērija, Magdalēna, Madelaina, Madeleina, Madlena, Madlēna, Magdalena, Magdaliene, Magdalina, Magita, Meralda, Meri, Merīda, Merija, Merilina, Merita, Radislavs, Radmila, Radomirs
+```
+
+You can also ask for today's names (the `-e` or `--extended` option can be used here, too):
+
+```
+❯ nameday now
+
+Šodienas vārda dienas: Venta, Salvis, Selva
+```
+
+#### Get the name day for a given name
+
+Find the name day date for a given name:
+
+```
+❯ nameday name Uldis
+
+Uldis: vārda diena ir 07-04 (MM-DD)
+```
+
+This command also looks up names in the extended name day list:
+
+```
+❯ nameday name Radomirs
+
+Radomirs: vārda diena (paplašinātajā sarakstā) ir 07-23 (MM-DD)
+```
+
+#### Show name days for a week
+
+Use the `week` command to display names for a week (the current date +/- 3 days):
+
+```
+❯ nameday week
+
+05-17 vārda dienas: Herberts, Dailis, Umberts
+05-18 vārda dienas: Inese, Inesis, Ēriks
+05-19 vārda dienas: Lita, Sibilla, Teika
+05-20 vārda dienas: Venta, Salvis, Selva
+05-21 vārda dienas: Ernestīne, Ingmārs, Akvelīna
+05-22 vārda dienas: Emīlija, Visu neparasto un kalendāros neierakstīto vārdu diena
+05-23 vārda dienas: Leontīne, Leokādija, Lonija, Ligija
 ```
 
 ### Usage - as a library
