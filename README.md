@@ -69,9 +69,21 @@ db.get_data_for_name("Radomirs", extended=True)
 db.get_names_for_date("07-01")
 >>> ['Imants', 'Rimants', 'Ingars', 'Intars']
 
-# Get the full name days list (dictionary)
+# Look up the names in the extended name day list
+db.get_names_for_date("07-01", extended=True)
+>>> ['Imants', 'Rimants', 'Ingars', 'Intars', 'Ingārs', 'Ingera', ...]
+```
+
+You can also access the full list of name days (both the core and the extended name day list):
+
+```
+# Get the core name days list (dictionary)
 db.namedays
 >>> {'01-01': ['Laimnesis', 'Solvita', 'Solvija'], ..., '12-31': ['Silvestrs', 'Silvis', 'Kalvis']}
+
+# Get the extended name days list (dictionary)
+db.namedays_ext
+>>> {'01-01': ['Laimnesis', 'Solvita', 'Solvija', 'Afra', 'Afrodīte', ...], ...}
 ```
 
 ### Data source
