@@ -72,12 +72,13 @@ def name(name):
 def print_nameday_for_name(name):
 
     db = NameDayDB()
-    date = db.get_date_for_name(name) 
 
     click.echo()
 
-    if date:
+    if date := db.get_date_for_name(name):
         click.echo(f"{name}: vārda diena ir {date} (MM-DD)")
+    elif date := db.get_date_for_name(name, extended=True):
+        click.echo(f"{name}: vārda diena (paplašinātajā sarakstā) ir {date} (MM-DD)")
     else:
         click.echo(f"Nevarēju atrast vārda dienu: {name}")
 
