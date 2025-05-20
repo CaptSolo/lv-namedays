@@ -105,6 +105,31 @@ def test_now_command_feb29(mock_datetime, mock_read_namedays, runner, mock_named
     assert result.exit_code == 0
     assert "Šodienas vārda dienas: -" in result.output
 
+
+@patch("lv_namedays.nameday.read_namedays")
+def test_name_command(mock_read_namedays, runner, mock_namedays):
+    """Test the CLI command for finding a name's date."""
+    mock_read_namedays.return_value = mock_namedays
+
+    # Test with a name that exists
+    result = runner.invoke(cli.cli, ["name", "Uldis"])
+    assert result.exit_code == 0
+    assert "Uldis" in result.output
+    assert "07-04" in result.output
+
+    # Test case insensitive search
+    result = runner.invoke(cli.cli, ["name", "uldis"])
+    assert result.exit_code == 0
+    assert "uldis" in result.output
+    assert "07-04" in result.output
+
+    # Test with a name that does not exist
+    result = runner.invoke(cli.cli, ["name", "John"])
+    assert result.exit_code == 0
+    assert "Nevarēju atrast vārda dienu:" in result.output
+    assert "John" in result.output
+
+
 def test_name_command_extended(runner):
     """Test the CLI command for finding a name's date."""
 
