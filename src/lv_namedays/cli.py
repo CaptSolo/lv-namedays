@@ -14,13 +14,14 @@ def cli():
     pass
 
 @cli.command()
-def now():
+@click.option("-e", "--extended", is_flag=True, help="Use the extended name day list.")
+def now(extended: bool) -> None:
     """
     Show today's name days.
     """
-    print_namedays(dt.datetime.now().strftime("%m-%d"))
+    print_namedays(dt.datetime.now().strftime("%m-%d"), extended=extended)
 
-def print_namedays(date_str, msg=None):
+def print_namedays(date_str, msg=None, extended=False):
     
     db = NameDayDB()
 
@@ -29,7 +30,7 @@ def print_namedays(date_str, msg=None):
     if not msg:
         msg = "Šodienas vārda dienas:"
 
-    names = db.get_names_for_date(date_str)
+    names = db.get_names_for_date(date_str, extended=extended)
     
     if names is not None:
         nameday_lst = ", ".join(names) 
@@ -41,7 +42,8 @@ def print_namedays(date_str, msg=None):
 
 @cli.command()
 @click.argument("date")
-def date(date: str) -> None:
+@click.option("-e", "--extended", is_flag=True, help="Use the extended name day list.")
+def date(date: str, extended: bool) -> None:
     """
     Show name days for a specific date (in MM-DD format).
     """
@@ -57,7 +59,7 @@ def date(date: str) -> None:
         click.echo("Nepareizs datums. Ievadiet datumu MM-DD formātā.")
         return
 
-    print_namedays(date, msg=f"{date} vārda dienas:")
+    print_namedays(date, msg=f"{date} vārda dienas:", extended=extended)
 
 @cli.command()
 @click.argument("name")

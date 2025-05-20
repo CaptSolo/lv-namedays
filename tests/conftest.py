@@ -15,3 +15,10 @@ def mock_namedays():
         "07-04": ["Ulvis", "Uldis", "Sandis", "Sandijs"],
         "12-24": ["Ādams", "Ieva"]
     }
+
+
+@pytest.fixture
+def mock_namedays_extended():
+    return {
+        "01-01": ["Laimnesis", "Solvita", "Solvija", "Afra", "Afrodīte", "Agunda", "Agurs", "Januārija", "Laimstars", "Soleda", "Solita", "Solveta"],
+    }
