@@ -3,15 +3,15 @@ Program for converting the official namesday list from the Latvian
 language center into a JSON file. The list is in the form of an Excel
 file, which is converted to a JSON file.
 
-Input data: 
-https://data.gov.lv/dati/lv/dataset/latviesu-tradicionalais-un-paplasinatais-kalendarvardu-saraksts
+Input data:
+https://www.vvc.gov.lv/lv/kalendarvardu-ekspertu-komisija
 """
 
 import pandas as pd
 import csv
 import json
 
-BASIC_FILENAME = "tradic_vardadienu_saraksts.xlsx"
+BASIC_FILENAME = "_Latviešu tradicionālo vārdadienu saraksts.xlsx"
 BASIC_CSV = "tradic_vardadienu_saraksts.csv"
 BASIC_OUTPUT = "tradic_vardadienu_saraksts.json"
 
