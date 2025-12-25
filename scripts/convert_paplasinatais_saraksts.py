@@ -46,6 +46,9 @@ def convert_extended_list():
                 names_str = names_str.replace("Visu neparasto un kalendāros neierakstīto vārdu diena ", "")
                 has_name_day = True
 
+            names_str = names_str.replace("(LTG: ", "")
+            names_str = names_str.replace(")", "")
+
             names_str = names_str.replace(".", ",")
             names_str = names_str.replace(" ", ",")
 
