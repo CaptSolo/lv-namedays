@@ -1,6 +1,6 @@
 # Latvian name day list (vārda dienu saraksts)
 
-*Updated with new nameday lists for 2026.*
+*Updated with new name day lists for 2026.*
 
 This repository contains the Latvian name day list and an utility for working with it.
 
