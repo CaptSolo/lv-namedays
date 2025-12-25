@@ -15,7 +15,7 @@ def test_actual_data():
     assert "Uldis" in namedays["07-04"]
 
     assert "02-29" in namedays
-    assert "–" in namedays["02-29"]
+    assert "-" in namedays["02-29"]
 
     assert "05-22" in namedays
     assert "Visu neparasto un kalendāros neierakstīto vārdu diena" in namedays["05-22"]

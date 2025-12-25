@@ -146,9 +146,15 @@ db.namedays_ext
 >>> {'01-01': ['Laimnesis', 'Solvita', 'Solvija', 'Afra', 'Afrodīte', ...], ...}
 ```
 
+### Testing
+
+Check out this code with the `dev` dependency group.
+
+Then run `pytest`
+
 ### Data source
 
-https://data.gov.lv/dati/eng/dataset/latviesu-tradicionalais-un-paplasinatais-kalendarvardu-saraksts
+https://www.vvc.gov.lv/lv/kalendarvardu-ekspertu-komisija
 
 ### Related projects
 
