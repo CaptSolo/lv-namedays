@@ -1,17 +1,17 @@
 """
 Program for converting the official extended namesday list from the 
 Latvian language center into a JSON file. The list is in the form 
-of an Excel file, which is converted to a JSON file.
+of a CSV file, which this script converts to a JSON file.
 
 Input data: 
-https://data.gov.lv/dati/lv/dataset/latviesu-tradicionalais-un-paplasinatais-kalendarvardu-saraksts
+https://www.vvc.gov.lv/lv/kalendarvardu-ekspertu-komisija
 """
 
 import pandas as pd
 import csv
 import json
 
-EXTENDED_CSV = "paplasinatais_saraksts_.csv"
+EXTENDED_CSV = "Paplašinātais vārdadienu saraksts.csv"
 EXTENDED_OUTPUT = "paplasinatais_saraksts.json"
 
 def convert_extended_list():
