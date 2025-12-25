@@ -1,5 +1,7 @@
 # Latvian name day list (vārda dienu saraksts)
 
+*Updated with new nameday lists for 2026.*
+
 This repository contains the Latvian name day list and an utility for working with it.
 
 About [Latvian name days](https://en.wikipedia.org/wiki/Name_day#Latvia).
@@ -151,6 +153,8 @@ db.namedays_ext
 Check out this code with the `dev` dependency group.
 
 Then run `pytest`
+
+In order to test this app with different python versions run `tox`
 
 ### Data source
 
