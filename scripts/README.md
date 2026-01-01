@@ -1,5 +1,7 @@
 # Latvian name day data (conversion to JSON)
 
+## Conversion to JSON files
+
 These are Python scripts for converting the official Latvian name day datasets to JSON.
 
 There are two datasets - the traditional name day list and the extended name day list.
@@ -10,7 +12,9 @@ The original datasets are available from Latvia's State Language Centre website:
 
 - https://www.vvc.gov.lv/lv/kalendarvardu-ekspertu-komisija
 
----
+## Conversion to an iCal calendar file
 
 Use the `generate_ics.py` script in order to generate an .ics calendar file containing daily events with names from the traditional name day list.
+
+The resulting calendar: [latvian\_namedays.ics](latvian_namedays.ics)
 
