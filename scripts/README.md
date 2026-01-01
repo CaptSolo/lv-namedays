@@ -6,6 +6,11 @@ There are two datasets - the traditional name day list and the extended name day
 
 The converted files are located in the `src/lv-namedays/data` folder.
 
-The datasets are available from Latvia's Open Data Portal under the CC0 license:
-- https://data.gov.lv/dati/lv/dataset/latviesu-tradicionalais-un-paplasinatais-kalendarvardu-saraksts
+The original datasets are available from Latvia's State Language Centre website:
+
+- https://www.vvc.gov.lv/lv/kalendarvardu-ekspertu-komisija
+
+---
+
+Use the `generate_ics.py` script in order to generate an .ics calendar file containing daily events with names from the traditional name day list.
 
